@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class BibTeXEntry extends BibTeXObject {
 
-	private Key type = null;
+	//private Key type = null;
+        private BibTeXEntryType type = null;
 
 	private Key key = null;
 
@@ -19,8 +20,13 @@ public class BibTeXEntry extends BibTeXObject {
 
 	BibTeXEntry(){
 	}
-
+        /*
 	public BibTeXEntry(Key type, Key key){
+		setType(type);
+		setKey(key);
+	}
+        */
+	public BibTeXEntry(BibTeXEntryType type, Key key){
 		setType(type);
 		setKey(key);
 	}
@@ -62,7 +68,7 @@ public class BibTeXEntry extends BibTeXObject {
 	public void removeField(Key key){
 		this.fields.remove(key);
 	}
-
+        /*
 	public Key getType(){
 		return this.type;
 	}
@@ -70,6 +76,11 @@ public class BibTeXEntry extends BibTeXObject {
 	private void setType(Key type){
 		this.type = type;
 	}
+        */
+	public BibTeXEntryType getType(){return this.type;}
+
+	private void setType(BibTeXEntryType type){this.type = type;}
+        
 
 	public Key getKey(){
 		return this.key;
@@ -82,7 +93,7 @@ public class BibTeXEntry extends BibTeXObject {
 	public Map<Key, Value> getFields(){
 		return Collections.unmodifiableMap(this.fields);
 	}
-
+        /*
 	public static final Key TYPE_ARTICLE = new Key("article");
 	public static final Key TYPE_BOOK = new Key("book");
 	public static final Key TYPE_BOOKLET = new Key("booklet");
@@ -97,7 +108,8 @@ public class BibTeXEntry extends BibTeXObject {
 	public static final Key TYPE_PROCEEDINGS = new Key("proceedings");
 	public static final Key TYPE_TECHREPORT = new Key("techreport");
 	public static final Key TYPE_UNPUBLISHED = new Key("unpublished");
-
+        */
+        /*
 	public static final Key KEY_ADDRESS = new Key("address");
 	public static final Key KEY_ANNOTE = new Key("annote");
 	public static final Key KEY_AUTHOR = new Key("author");
@@ -125,4 +137,32 @@ public class BibTeXEntry extends BibTeXObject {
 	public static final Key KEY_URL = new Key("url");
 	public static final Key KEY_VOLUME = new Key("volume");
 	public static final Key KEY_YEAR = new Key("year");
+        */
+	public static final Key KEY_ADDRESS = new Key(BibTeXLanguageInterface.KEY_ADDRESS);
+	public static final Key KEY_ANNOTE = new Key(BibTeXLanguageInterface.KEY_ANNOTE);
+	public static final Key KEY_AUTHOR = new Key(BibTeXLanguageInterface.KEY_AUTHOR);
+	public static final Key KEY_BOOKTITLE = new Key(BibTeXLanguageInterface.KEY_BOOKTITLE);
+	public static final Key KEY_CHAPTER = new Key(BibTeXLanguageInterface.KEY_CHAPTER);
+	public static final Key KEY_CROSSREF = new Key(BibTeXLanguageInterface.KEY_CROSSREF);
+	public static final Key KEY_DOI = new Key(BibTeXLanguageInterface.KEY_DOI);
+	public static final Key KEY_EDITION = new Key(BibTeXLanguageInterface.KEY_EDITION);
+	public static final Key KEY_EDITOR = new Key(BibTeXLanguageInterface.KEY_EDITOR);
+	public static final Key KEY_EPRINT = new Key(BibTeXLanguageInterface.KEY_EPRINT);
+	public static final Key KEY_HOWPUBLISHED = new Key(BibTeXLanguageInterface.KEY_HOWPUBLISHED);
+	public static final Key KEY_INSTITUTION = new Key(BibTeXLanguageInterface.KEY_INSTITUTION);
+	public static final Key KEY_JOURNAL = new Key(BibTeXLanguageInterface.KEY_JOURNAL);
+	public static final Key KEY_KEY = new Key(BibTeXLanguageInterface.KEY_KEY);
+	public static final Key KEY_MONTH = new Key(BibTeXLanguageInterface.KEY_MONTH);
+	public static final Key KEY_NOTE = new Key(BibTeXLanguageInterface.KEY_NOTE);
+	public static final Key KEY_NUMBER = new Key(BibTeXLanguageInterface.KEY_NUMBER);
+	public static final Key KEY_ORGANIZATION = new Key(BibTeXLanguageInterface.KEY_ORGANIZATION);
+	public static final Key KEY_PAGES = new Key(BibTeXLanguageInterface.KEY_PAGES);
+	public static final Key KEY_PUBLISHER = new Key(BibTeXLanguageInterface.KEY_PUBLISHER);
+	public static final Key KEY_SCHOOL = new Key(BibTeXLanguageInterface.KEY_SCHOOL);
+	public static final Key KEY_SERIES = new Key(BibTeXLanguageInterface.KEY_SERIES);
+	public static final Key KEY_TITLE = new Key(BibTeXLanguageInterface.KEY_TITLE);
+	public static final Key KEY_TYPE = new Key(BibTeXLanguageInterface.KEY_TYPE);
+	public static final Key KEY_URL = new Key(BibTeXLanguageInterface.KEY_URL);
+	public static final Key KEY_VOLUME = new Key(BibTeXLanguageInterface.KEY_VOLUME);
+	public static final Key KEY_YEAR = new Key(BibTeXLanguageInterface.KEY_YEAR);
 }

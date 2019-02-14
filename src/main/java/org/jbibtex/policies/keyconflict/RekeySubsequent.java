@@ -35,6 +35,7 @@ public class RekeySubsequent implements BibTeXEntryKeyConflictResolutionPolicy {
     // --------------------------------
     // General
     // --------------------------------
+    
     @Override
     public BibTeXEntry entryToPut(BibTeXEntry entryCandidate, KeyMap<BibTeXEntry> currentEntries) {
         

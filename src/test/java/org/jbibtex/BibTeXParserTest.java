@@ -58,6 +58,7 @@ public class BibTeXParserTest {
 		assertEquals(4030, entries.size());
 
 		Collection<BibTeXEntry> values = entries.values();
+                /*
 		assertEquals(1890, countType(values, BibTeXEntry.TYPE_ARTICLE));
 		assertEquals(1675, countType(values, BibTeXEntry.TYPE_BOOK));
 		assertEquals(232, countType(values, BibTeXEntry.TYPE_INPROCEEDINGS));
@@ -69,6 +70,18 @@ public class BibTeXParserTest {
 		assertEquals(114, countType(values, BibTeXEntry.TYPE_PROCEEDINGS));
 		assertEquals(20, countType(values, BibTeXEntry.TYPE_TECHREPORT));
 		assertEquals(9, countType(values, BibTeXEntry.TYPE_UNPUBLISHED));
+                */
+		assertEquals(1890, countType(values, BibTeXEntryType.ARTICLE));
+		assertEquals(1675, countType(values, BibTeXEntryType.BOOK));
+		assertEquals(232, countType(values, BibTeXEntryType.INPROCEEDINGS));
+		assertEquals(8, countType(values, BibTeXEntryType.MANUAL));
+		assertEquals(13, countType(values, BibTeXEntryType.MASTERSTHESIS));
+		assertEquals(62, countType(values, BibTeXEntryType.MISC));
+		//assertEquals(6, countType(values, new Key("periodical")));
+		assertEquals(1, countType(values, BibTeXEntryType.PHDTHESIS));
+		assertEquals(114, countType(values, BibTeXEntryType.PROCEEDINGS));
+		assertEquals(20, countType(values, BibTeXEntryType.TECHREPORT));
+		assertEquals(9, countType(values, BibTeXEntryType.UNPUBLISHED));
 	}
 
 	@Test
@@ -105,6 +118,7 @@ public class BibTeXParserTest {
 		assertEquals(2273, entries.size());
 
 		Collection<BibTeXEntry> values = entries.values();
+                /*
 		assertEquals(645, countType(values, BibTeXEntry.TYPE_ARTICLE));
 		assertEquals(1447, countType(values, BibTeXEntry.TYPE_BOOK));
 		assertEquals(6, countType(values, BibTeXEntry.TYPE_INCOLLECTION));
@@ -117,6 +131,19 @@ public class BibTeXParserTest {
 		assertEquals(34, countType(values, BibTeXEntry.TYPE_PROCEEDINGS));
 		assertEquals(33, countType(values, BibTeXEntry.TYPE_TECHREPORT));
 		assertEquals(2, countType(values, BibTeXEntry.TYPE_UNPUBLISHED));
+                */
+		assertEquals(645, countType(values, BibTeXEntryType.ARTICLE));
+		assertEquals(1447, countType(values, BibTeXEntryType.BOOK));
+		assertEquals(6, countType(values, BibTeXEntryType.INCOLLECTION));
+		assertEquals(48, countType(values, BibTeXEntryType.INPROCEEDINGS));
+		assertEquals(31, countType(values, BibTeXEntryType.MANUAL));
+		assertEquals(12, countType(values, BibTeXEntryType.MASTERSTHESIS));
+		assertEquals(7, countType(values, BibTeXEntryType.MISC));
+		//assertEquals(6, countType(values, new Key("periodical")));
+		assertEquals(2, countType(values, BibTeXEntryType.PHDTHESIS));
+		assertEquals(34, countType(values, BibTeXEntryType.PROCEEDINGS));
+		assertEquals(33, countType(values, BibTeXEntryType.TECHREPORT));
+		assertEquals(2, countType(values, BibTeXEntryType.UNPUBLISHED));
 	}
 
 	@Test
@@ -190,7 +217,11 @@ public class BibTeXParserTest {
 	}
 
 	static
-	private int countType(Collection<BibTeXEntry> entries, Key type){
+	private int countType(
+                Collection<BibTeXEntry> entries
+               //,Key type
+               ,BibTeXEntryType type
+        ){
 		int count = 0;
 
 		for(BibTeXEntry entry : entries){
