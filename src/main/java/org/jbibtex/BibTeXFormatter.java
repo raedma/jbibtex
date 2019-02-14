@@ -71,13 +71,17 @@ public class BibTeXFormatter {
 		writer.write(',');
 		writer.write('\n');
 
-		Collection<Map.Entry<Key, Value>> fields = (entry.getFields()).entrySet();
-		for(Iterator<Map.Entry<Key, Value>> it = fields.iterator(); it.hasNext(); ){
-			Map.Entry<Key, Value> field = it.next();
+		//Collection<Map.Entry<Key, Value>> fields = (entry.getFields()).entrySet();
+                Collection<Map.Entry<BibTeXFieldType, Value>> fields = (entry.getFields()).entrySet();
+		//for(Iterator<Map.Entry<Key, Value>> it = fields.iterator(); it.hasNext(); ){
+                for(Iterator<Map.Entry<BibTeXFieldType, Value>> it = fields.iterator(); it.hasNext(); ){
+			//Map.Entry<Key, Value> field = it.next();
+                        Map.Entry<BibTeXFieldType, Value> field = it.next();
 
 			writer.write(getIndent());
 
-			format(field.getKey(), writer);
+			//format(field.getKey(), writer);
+                        writer.write(field.getKey().get());
 			writer.write(" = ");
 			format(field.getValue(), 2, writer);
 

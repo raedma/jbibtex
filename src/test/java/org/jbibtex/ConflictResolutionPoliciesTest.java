@@ -54,7 +54,8 @@ public class ConflictResolutionPoliciesTest {
         assertEquals(1, db.getEntries().size());
         assertEquals(
                 "EnTagRec++: An enhanced tag recommendation system for software information sites",
-                db.getEntries().get(new Key("Wang20171")).getField(new Key("title")).toUserString()
+                //db.getEntries().get(new Key("Wang20171")).getField(new Key("title")).toUserString()
+                db.getEntries().get(new Key("Wang20171")).getField(BibTeXFieldType.TITLE).toUserString()
         );
     }
     /*
@@ -87,7 +88,8 @@ public class ConflictResolutionPoliciesTest {
         assertEquals(1, db.getEntries().size());
         assertEquals(
                 "Understanding the factors for fast answers in technical Q&A websites: An empirical study of four stack exchange websites",
-                db.getEntries().get(new Key("Wang20171")).getField(new Key("title")).toUserString()
+                //db.getEntries().get(new Key("Wang20171")).getField(new Key("title")).toUserString()
+                db.getEntries().get(new Key("Wang20171")).getField(BibTeXFieldType.TITLE).toUserString()
         );
     }
 
@@ -127,11 +129,13 @@ public class ConflictResolutionPoliciesTest {
         assertEquals(2, db.getEntries().size());
         assertEquals(
                 "EnTagRec++: An enhanced tag recommendation system for software information sites",
-                db.getEntries().get(new Key("Wang20171")).getField(new Key("title")).toUserString()
+                //db.getEntries().get(new Key("Wang20171")).getField(new Key("title")).toUserString()
+                db.getEntries().get(new Key("Wang20171")).getField(BibTeXFieldType.TITLE).toUserString()
         );
         assertEquals(
                 "Understanding the factors for fast answers in technical Q&A websites: An empirical study of four stack exchange websites",
-                db.getEntries().get(new Key("Wang20171-1")).getField(new Key("title")).toUserString()
+                //db.getEntries().get(new Key("Wang20171-1")).getField(new Key("title")).toUserString()
+                db.getEntries().get(new Key("Wang20171-1")).getField(BibTeXFieldType.TITLE).toUserString()
         );
 }
     
