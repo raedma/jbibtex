@@ -37,6 +37,12 @@ public class BibTeXEntry extends BibTeXObject {
 
 		return null;
 	}
+        
+        public boolean hasField(
+                BibTeXFieldType key
+        ){
+            return fields.containsKey(key);
+        }
 
 	public Value getField(
                 BibTeXFieldType key
