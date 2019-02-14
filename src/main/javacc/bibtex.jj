@@ -6,6 +6,7 @@ options {
 	JDK_VERSION = "1.5";
 	KEEP_LINE_COLUMN = true;
 	STATIC = false;
+        ERROR_REPORTING = true;
 }
 
 PARSER_BEGIN(BibTeXParser)
@@ -18,19 +19,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.jbibtex.policies.PolicyManager;
+
 public class BibTeXParser {
 
 	private KeyMap<BibTeXString> macros = new KeyMap<BibTeXString>();
 
 	private BibTeXDatabase database = null;
 
-	private List<Exception> exceptions = new ArrayList<Exception>();
+	//private List<Exception> exceptions = new ArrayList<Exception>();
+        private List<Exception> exceptions;
 
 	private long id = 1L;
 
+        private PolicyManager pm = null;
 
-	public BibTeXParser() throws ParseException, TokenMgrException {
+        public BibTeXParser() throws ParseException, TokenMgrException {
+            this(new PolicyManager());
+        }
+
+	public BibTeXParser(
+            PolicyManager pm
+        ) throws ParseException, TokenMgrException {
 		this("");
+            
+            this.pm = pm;
 
 		// Default macros
 		addMacro("jan", "January");
@@ -158,9 +171,15 @@ public class BibTeXParser {
 		this.database = database;
 	}
 
+        public void addException(Exception v){
+            if (this.exceptions == null){this.exceptions = new ArrayList<Exception>();}
+            exceptions.add(v);
+        }
+        public boolean hasExceptions(){return exceptions != null && !exceptions.isEmpty();}
 	public List<Exception> getExceptions(){
 		return Collections.unmodifiableList(this.exceptions);
 	}
+        public void clearExceptions(){exceptions = null;}
 
 	public KeyMap<BibTeXString> getMacros(){
 		return this.macros;
@@ -334,7 +353,8 @@ TOKEN :
 
 private BibTeXDatabase Database(boolean performErrorRecovery) :
 {
-	BibTeXDatabase database = new BibTeXDatabase();
+	//BibTeXDatabase database = new BibTeXDatabase();
+        BibTeXDatabase database = new BibTeXDatabase(pm);
 
 	BibTeXObject object = null;
 }
@@ -342,7 +362,8 @@ private BibTeXDatabase Database(boolean performErrorRecovery) :
 	{
 		setDatabase(database);
 
-		this.exceptions.clear();
+		//this.exceptions.clear();
+                this.clearExceptions();
 	}
 
 	(
@@ -356,7 +377,8 @@ private BibTeXDatabase Database(boolean performErrorRecovery) :
 				throw tme;
 			}
 
-			this.exceptions.add(tme);
+			//this.exceptions.add(tme);
+                        this.addException(tme);
 
 			SkipTo("@");
 		} catch(ParseException pe){
@@ -365,7 +387,18 @@ private BibTeXDatabase Database(boolean performErrorRecovery) :
 				throw pe;
 			}
 
-			this.exceptions.add(pe);
+			//this.exceptions.add(pe);
+                        this.addException(pe);
+
+			SkipTo("@");
+		} catch(DuplicateKeyException pe){
+
+			if(!performErrorRecovery){
+				throw pe;
+			}
+
+			//this.exceptions.add(pe);
+                        this.addException(pe);
 
 			SkipTo("@");
 		}
@@ -438,7 +471,8 @@ private BibTeXInclude Include():
 			Reader reader = new FileReader(string);
 
 			try {
-				BibTeXParser parser = new BibTeXParser();
+				//BibTeXParser parser = new BibTeXParser();
+                                BibTeXParser parser = new BibTeXParser(pm);
 
 				database = parser.parse(reader);
 			} finally {

@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import org.jbibtex.policies.PolicyManager;
 
 public class BibTeXDatabase implements Serializable {
-
+    
+    private final PolicyManager pm;
+    
 	private List<BibTeXObject> objects = new ArrayList<>();
 
 	private List<BibTeXInclude> includes = new ArrayList<>();
@@ -18,6 +21,17 @@ public class BibTeXDatabase implements Serializable {
 	private KeyMap<BibTeXString> strings = new KeyMap<>();
 
 	private KeyMap<BibTeXEntry> entries = new KeyMap<>();
+        
+        
+    public BibTeXDatabase(){
+        this.pm = new PolicyManager();
+    }
+    
+    public BibTeXDatabase(
+        PolicyManager pm    
+    ){
+        this.pm = pm;
+    }
 
 
 	public void addObject(BibTeXObject object){
@@ -37,11 +51,17 @@ public class BibTeXDatabase implements Serializable {
 
 		if(object instanceof BibTeXEntry){
 			BibTeXEntry entry = (BibTeXEntry)object;
+                        
+                        BibTeXEntry entryToPut = pm.getBibTeXEntryKeyConflictResolutionPolicy().get().entryToPut(entry, entries);
 
-			success = this.entries.putIfMissing(entry.getKey(), entry);
-		} else
-
-		{
+			//success = this.entries.putIfMissing(entry.getKey(), entry);
+                        if(entryToPut != null) {
+                            this.entries.put(entryToPut.getKey(), entryToPut);
+                            success = true;
+			} else {
+                            success = false;
+			}
+		} else {
 			success = true;
 		} // End if
 
