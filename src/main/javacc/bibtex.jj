@@ -353,8 +353,7 @@ TOKEN :
 
 private BibTeXDatabase Database(boolean performErrorRecovery) :
 {
-	//BibTeXDatabase database = new BibTeXDatabase();
-        BibTeXDatabase database = new BibTeXDatabase(pm);
+	BibTeXDatabase database = new BibTeXDatabase(pm);
 
 	BibTeXObject object = null;
 }
@@ -362,8 +361,7 @@ private BibTeXDatabase Database(boolean performErrorRecovery) :
 	{
 		setDatabase(database);
 
-		//this.exceptions.clear();
-                this.clearExceptions();
+		this.clearExceptions();
 	}
 
 	(
@@ -377,8 +375,7 @@ private BibTeXDatabase Database(boolean performErrorRecovery) :
 				throw tme;
 			}
 
-			//this.exceptions.add(tme);
-                        this.addException(tme);
+			this.addException(tme);
 
 			SkipTo("@");
 		} catch(ParseException pe){
@@ -387,8 +384,7 @@ private BibTeXDatabase Database(boolean performErrorRecovery) :
 				throw pe;
 			}
 
-			//this.exceptions.add(pe);
-                        this.addException(pe);
+			this.addException(pe);
 
 			SkipTo("@");
 		} catch(DuplicateKeyException pe){
@@ -397,8 +393,7 @@ private BibTeXDatabase Database(boolean performErrorRecovery) :
 				throw pe;
 			}
 
-			//this.exceptions.add(pe);
-                        this.addException(pe);
+			this.addException(pe);
 
 			SkipTo("@");
 		}
@@ -471,8 +466,7 @@ private BibTeXInclude Include():
 			Reader reader = new FileReader(string);
 
 			try {
-				//BibTeXParser parser = new BibTeXParser();
-                                BibTeXParser parser = new BibTeXParser(pm);
+				BibTeXParser parser = new BibTeXParser(pm);
 
 				database = parser.parse(reader);
 			} finally {
@@ -555,8 +549,6 @@ private BibTeXEntry Entry() :
 	)
 
 	{
-		//BibTeXEntry entry = new BibTeXEntry(new Key(type.image), key != null ? new Key(key.image) : new Key(nextKey()));
-                
                 BibTeXEntryType entryType = BibTeXEntryType.getTypeOf(type.image);
                 BibTeXEntry entry = new BibTeXEntry(entryType, key != null ? new Key(key.image) : new Key(nextKey()));
 

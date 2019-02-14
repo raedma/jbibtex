@@ -64,9 +64,7 @@ public class BibTeXFormatter {
 
 	protected void format(BibTeXEntry entry, Writer writer) throws IOException {
 		writer.write("@");
-		//format(entry.getType(), writer);
-                //format(entry.getType().get(), writer);
-                writer.write(entry.getType().get());
+		writer.write(entry.getType().get());
 
 		writer.write('{');
 		format(entry.getKey(), writer);

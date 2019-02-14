@@ -54,8 +54,7 @@ public class BibTeXDatabase implements Serializable {
                         
                         BibTeXEntry entryToPut = pm.getBibTeXEntryKeyConflictResolutionPolicy().get().entryToPut(entry, entries);
 
-			//success = this.entries.putIfMissing(entry.getKey(), entry);
-                        if(entryToPut != null) {
+			if(entryToPut != null) {
                             this.entries.put(entryToPut.getKey(), entryToPut);
                             success = true;
 			} else {
