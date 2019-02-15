@@ -12,6 +12,10 @@ public class KeyMap <V> extends LinkedHashMap<Key, V> {
         super();
     }
 
+    public KeyMap(int capacity) {
+        super(capacity);
+    }
+
     public KeyMap(Map<Key,V> map) {
         super(map);
     }
