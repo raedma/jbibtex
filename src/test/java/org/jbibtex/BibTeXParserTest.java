@@ -156,7 +156,7 @@ public class BibTeXParserTest {
 	}
 
 	static
-	private BibTeXDatabase parse(BibTeXParser parser, String path) throws Exception {
+	public BibTeXDatabase parse(BibTeXParser parser, String path) throws Exception {
 		InputStream is = (BibTeXParserTest.class).getResourceAsStream(path);
 
 		try {
@@ -173,7 +173,7 @@ public class BibTeXParserTest {
 	}
 
 	static
-	private BibTeXDatabase parseFully(BibTeXParser parser, String path) throws Exception {
+	public BibTeXDatabase parseFully(BibTeXParser parser, String path) throws Exception {
 		InputStream is = (BibTeXParserTest.class).getResourceAsStream(path);
 
 		try {

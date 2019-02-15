@@ -4,8 +4,17 @@
 package org.jbibtex;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class KeyMap <V> extends LinkedHashMap<Key, V> {
+
+    public KeyMap() {
+        super();
+    }
+
+    public KeyMap(Map<Key,V> map) {
+        super(map);
+    }
 
 	/**
 	 * @return <code>true</code> If the {@link #keySet() key set} of the map was modified, <code>false</code> otherwise.

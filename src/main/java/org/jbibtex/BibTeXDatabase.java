@@ -14,13 +14,10 @@ public class BibTeXDatabase implements Serializable {
     
     private final PolicyManager pm;
     
-	private List<BibTeXObject> objects = new ArrayList<>();
-
-	private List<BibTeXInclude> includes = new ArrayList<>();
-
-	private KeyMap<BibTeXString> strings = new KeyMap<>();
-
-	private KeyMap<BibTeXEntry> entries = new KeyMap<>();
+    private List<BibTeXObject> objects = new ArrayList<>();
+    private List<BibTeXInclude> includes = new ArrayList<>();
+    private KeyMap<BibTeXString> strings = new KeyMap<>();
+    private KeyMap<BibTeXEntry> entries = new KeyMap<>();
         
         
     public BibTeXDatabase(){
@@ -32,118 +29,142 @@ public class BibTeXDatabase implements Serializable {
     ){
         this.pm = pm;
     }
+    
+    private void setObjects(List<BibTeXObject> v){this.objects = v;}
+    private void setIncludes(List<BibTeXInclude> v){this.includes = v;}
+    private void setStrings(KeyMap<BibTeXString> v){this.strings = v;}
+    private void setEntries(KeyMap<BibTeXEntry> v){this.entries = v;}
 
+    public void addObject(BibTeXObject object){
+            boolean success;
 
-	public void addObject(BibTeXObject object){
-		boolean success;
+            if(object instanceof BibTeXInclude){
+                    BibTeXInclude include = (BibTeXInclude)object;
 
-		if(object instanceof BibTeXInclude){
-			BibTeXInclude include = (BibTeXInclude)object;
+                    success = this.includes.add(include);
+            } else
 
-			success = this.includes.add(include);
-		} else
+            if(object instanceof BibTeXString){
+                    BibTeXString string = (BibTeXString)object;
 
-		if(object instanceof BibTeXString){
-			BibTeXString string = (BibTeXString)object;
+                    success = this.strings.putIfMissing(string.getKey(), string);
+            } else
 
-			success = this.strings.putIfMissing(string.getKey(), string);
-		} else
+            if(object instanceof BibTeXEntry){
+                    BibTeXEntry entry = (BibTeXEntry)object;
 
-		if(object instanceof BibTeXEntry){
-			BibTeXEntry entry = (BibTeXEntry)object;
-                        
-                        BibTeXEntry entryToPut = pm.getBibTeXEntryKeyConflictResolutionPolicy().get().entryToPut(entry, entries);
+                    BibTeXEntry entryToPut = pm.getBibTeXEntryKeyConflictResolutionPolicy().get().entryToPut(entry, entries);
 
-			if(entryToPut != null) {
-                            this.entries.put(entryToPut.getKey(), entryToPut);
-                            success = true;
-			} else {
-                            success = false;
-			}
-		} else {
-			success = true;
-		} // End if
+                    if(entryToPut != null) {
+                        this.entries.put(entryToPut.getKey(), entryToPut);
+                        success = true;
+                    } else {
+                        success = false;
+                    }
+            } else {
+                    success = true;
+            } // End if
 
-		if(success){
-			this.objects.add(object);
-		}
-	}
+            if(success){
+                    this.objects.add(object);
+            }
+    }
 
-	public void removeObject(BibTeXObject object){
-		boolean success;
+    public void removeObject(BibTeXObject object){
+            boolean success;
 
-		if(object instanceof BibTeXInclude){
-			BibTeXInclude include = (BibTeXInclude)object;
+            if(object instanceof BibTeXInclude){
+                    BibTeXInclude include = (BibTeXInclude)object;
 
-			success = this.includes.remove(include);
-		} else
+                    success = this.includes.remove(include);
+            } else
 
-		if(object instanceof BibTeXString){
-			BibTeXString string = (BibTeXString)object;
+            if(object instanceof BibTeXString){
+                    BibTeXString string = (BibTeXString)object;
 
-			success = this.strings.removeIfPresent(string.getKey());
-		} else
+                    success = this.strings.removeIfPresent(string.getKey());
+            } else
 
-		if(object instanceof BibTeXEntry){
-			BibTeXEntry entry = (BibTeXEntry)object;
+            if(object instanceof BibTeXEntry){
+                    BibTeXEntry entry = (BibTeXEntry)object;
 
-			success = this.entries.removeIfPresent(entry.getKey());
-		} else
+                    success = this.entries.removeIfPresent(entry.getKey());
+            } else
 
-		{
-			success = true;
-		} // End if
+            {
+                    success = true;
+            } // End if
 
-		if(success){
-			this.objects.remove(object);
-		}
-	}
+            if(success){
+                    this.objects.remove(object);
+            }
+    }
 
-	public List<BibTeXObject> getObjects(){
-		return Collections.unmodifiableList(this.objects);
-	}
+    public List<BibTeXObject> getObjects(){
+        return Collections.unmodifiableList(this.objects);
+    }
 
-	public BibTeXString resolveString(Key key){
-		BibTeXString string = this.strings.get(key);
+    public BibTeXString resolveString(Key key){
+        BibTeXString string = this.strings.get(key);
 
-		if(string == null){
+        if(string == null){
 
-			for(BibTeXInclude include : this.includes){
-				BibTeXDatabase database = include.getDatabase();
+            for(BibTeXInclude include : this.includes){
+                BibTeXDatabase database = include.getDatabase();
 
-				string = database.resolveString(key);
-				if(string != null){
-					return string;
-				}
-			}
-		}
+                string = database.resolveString(key);
+                if(string != null){
+                    return string;
+                }
+            }
+        }
 
-		return string;
-	}
+        return string;
+    }
 
-	public Map<Key, BibTeXString> getStrings(){
-		return Collections.unmodifiableMap(this.strings);
-	}
+    public Map<Key, BibTeXString> getStrings(){
+            return Collections.unmodifiableMap(this.strings);
+    }
 
-	public BibTeXEntry resolveEntry(Key key){
-		BibTeXEntry entry = this.entries.get(key);
+    public BibTeXEntry resolveEntry(Key key){
+            BibTeXEntry entry = this.entries.get(key);
 
-		if(entry == null){
+            if(entry == null){
 
-			for(BibTeXInclude include : this.includes){
-				BibTeXDatabase database = include.getDatabase();
+                    for(BibTeXInclude include : this.includes){
+                            BibTeXDatabase database = include.getDatabase();
 
-				entry = database.resolveEntry(key);
-				if(entry != null){
-					return entry;
-				}
-			}
-		}
+                            entry = database.resolveEntry(key);
+                            if(entry != null){
+                                    return entry;
+                            }
+                    }
+            }
 
-		return entry;
-	}
+            return entry;
+    }
 
-	public Map<Key, BibTeXEntry> getEntries(){
-		return Collections.unmodifiableMap(this.entries);
-	}
+    public Map<Key, BibTeXEntry> getEntries(){
+            return Collections.unmodifiableMap(this.entries);
+    }
+
+    public void mergeEntries(BibTeXDatabase db){
+        this.mergeEntries(db.getEntries());
+    }
+
+    public void mergeEntries(Map<Key,BibTeXEntry> es){
+        for (BibTeXEntry e : es.values()){
+            this.addObject(e);
+        }
+    }
+    
+    public BibTeXDatabase copy(){
+        BibTeXDatabase db = new BibTeXDatabase(this.pm);
+        db.setObjects(new ArrayList<>(this.objects));
+        db.setIncludes(new ArrayList<>(this.includes));
+        db.setStrings(new KeyMap<>(this.strings));
+        db.setEntries(new KeyMap<>(this.entries));
+        return db;
+    }
+        
 }
