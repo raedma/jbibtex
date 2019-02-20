@@ -17,7 +17,7 @@ public class Value implements Serializable {
 	}
 
 	abstract
-	protected String format();
+	public String format();
 
 	/**
 	 * Returns a string representation of the object which is suitable for displaying to end users.

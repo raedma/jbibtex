@@ -13,7 +13,7 @@ public class DigitStringValue extends LiteralValue {
 	}
 
 	@Override
-	protected String format(){
+	public String format(){
 		return getString();
 	}
 }

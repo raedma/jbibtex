@@ -19,7 +19,7 @@ public class CrossReferenceValue extends Value implements Resolvable {
 	}
 
 	@Override
-	protected String format(){
+	public String format(){
 		return getValue().format();
 	}
 

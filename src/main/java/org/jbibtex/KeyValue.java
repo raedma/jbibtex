@@ -22,7 +22,7 @@ public class KeyValue extends Value {
 	}
 
 	@Override
-	protected String format(){
+	public String format(){
 		return getString();
 	}
 

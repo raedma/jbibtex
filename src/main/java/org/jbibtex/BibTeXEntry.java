@@ -88,7 +88,7 @@ public class BibTeXEntry extends BibTeXObject {
 		return this.key;
 	}
 
-	private void setKey(Key key){
+	public void setKey(Key key){
 		this.key = key;
 	}
 

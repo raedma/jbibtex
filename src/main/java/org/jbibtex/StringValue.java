@@ -18,7 +18,7 @@ public class StringValue extends LiteralValue {
 	}
 
 	@Override
-	protected String format(){
+	public String format(){
 		Style style = getStyle();
 
 		return style.getBegin() + getString() + style.getEnd();
@@ -34,8 +34,8 @@ public class StringValue extends LiteralValue {
 
 	static
 	public enum Style {
-		BRACED("{", "}"),
-		QUOTED("\"", "\""),
+		BRACED(BibTeXLanguageInterface.SYMBOL_BRACKET_OPEN, BibTeXLanguageInterface.SYMBOL_BRACKET_CLOSE),
+		QUOTED(BibTeXLanguageInterface.SYMBOL_QUOTATION_OPEN, BibTeXLanguageInterface.SYMBOL_QUOTATION_CLOSE),
 		;
 
 		private String begin = null;

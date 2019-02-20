@@ -38,4 +38,24 @@ public class StringUtil {
 
 		return string;
 	}
+    
+    /**
+     * Returns the String {@code s} repeated {@code n} times.
+     * 
+     * @param s Input-String
+     * @param n Number of repetitions
+     * @return the String {@code s} repeated {@code n} times.
+     */
+    public static String repeat(String s, int n){
+        return new String(new char[n]).replace("\0", s);
+    }
+    
+    /**
+     * Replace all occurences with two or more white spaces with a single one.
+     * @param line String
+     * @return String without multiple adjacent spaces
+     */
+    public static String removeMultipleWhiteSpacesWithOne(String line){
+        return line.replaceAll(" +", " ");
+    }
 }

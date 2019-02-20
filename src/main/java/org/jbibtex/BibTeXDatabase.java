@@ -148,6 +148,10 @@ public class BibTeXDatabase implements Serializable {
             return Collections.unmodifiableMap(this.entries);
     }
 
+    public Map<Key, BibTeXEntry> getModifiableEntries(){
+            return this.entries;
+    }
+
     public void mergeEntries(BibTeXDatabase db){
         this.mergeEntries(db.getEntries());
     }

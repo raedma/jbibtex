@@ -180,5 +180,19 @@ public interface BibTeXLanguageInterface {
     public static final String KEY_XXTITLE2 = "xxtitle-2";
     public static final String KEY_XXURL = "xxurl";
     public static final String KEY_XXXNOTE = "xxxnote";
+    
+    public static final String ENTRYTYPE_COMMENT = "comment";
+    public static final String ENTRYTYPE_INCLUDE = "include";
+    public static final String ENTRYTYPE_PREAMBLE = "preamble";
+    public static final String ENTRYTYPE_STRING = "string";
+    
+    public static final String SEP_AND = "and";
+    
+    public static final String SYMBOL_ENTRY = "@";
+    public static final String SYMBOL_NAMETOKENDELIMITER = ",";
+    public static final String SYMBOL_BRACKET_OPEN = "{";
+    public static final String SYMBOL_BRACKET_CLOSE = "}";
+    public static final String SYMBOL_QUOTATION_OPEN = "\"";
+    public static final String SYMBOL_QUOTATION_CLOSE = "\"";
 
 }

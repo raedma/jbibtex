@@ -19,7 +19,7 @@ public class ConcateValue extends Value {
 	}
 
 	@Override
-	protected String format(){
+	public String format(){
 		return getLeft().format() + " # " + getRight().format();
 	}
 

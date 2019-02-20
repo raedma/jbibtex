@@ -90,4 +90,15 @@ public enum BibTeXEntryType implements Serializable {
         return result;
     }
     
+    public static int getMaxLength(){
+        
+        int l = Integer.MIN_VALUE;
+        for (BibTeXEntryType type : values()){
+            if (type.get().length() > l){l = type.get().length();}
+        }
+        
+        return l;
+        
+    }
+    
 }

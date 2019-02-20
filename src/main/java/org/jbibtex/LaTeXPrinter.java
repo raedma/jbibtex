@@ -329,7 +329,7 @@ public class LaTeXPrinter {
 		setSymbol("textbar", "|");
 		setSymbol("textbraceleft", "{");
 		setSymbol("textbraceright", "}");
-		setSymbol("textcopyrigh", "\u00a9");
+		setSymbol("textcopyright", "\u00a9");
 		setSymbol("textdollar", "$");
 		setSymbol("textellipsis", "\u2026");
 		setSymbol("textemdash", "\u2014");
