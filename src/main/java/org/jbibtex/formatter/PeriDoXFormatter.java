@@ -30,7 +30,7 @@ import org.jbibtex.BibTeXString;
 import org.jbibtex.StringUtil;
 import org.jbibtex.StringValue.Style;
 import org.jbibtex.Value;
-import org.jbibtex.comparator.comparator.BibTeXEntryKeyAlphabeticalComparator;
+import org.jbibtex.comparator.BibTeXEntryKeyAlphabeticalComparator;
 import org.jbibtex.splitter.TypeSplitter;
 import org.jbibtex.splitter.TypeSplitterMemory;
 

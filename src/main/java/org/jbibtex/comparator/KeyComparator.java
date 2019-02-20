@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package org.jbibtex.comparator.comparator;
+package org.jbibtex.comparator;
 
 import java.util.Comparator;
 import org.jbibtex.Key;
