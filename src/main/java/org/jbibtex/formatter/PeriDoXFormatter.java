@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -308,7 +307,6 @@ public class PeriDoXFormatter extends AbstractBibTeXFormatter<
         writer.write("% " + header + "\n");
         writer.write("%" + StringUtils.repeat("-",29) + "\n");
         writer.write("\n");
-        
     }
     
     protected void format(Value value, Style style, Writer writer) throws IOException {
