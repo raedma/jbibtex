@@ -13,7 +13,7 @@ public class LiteralValue extends Value {
 	}
 
 	public LiteralValue(String string){
-		setString(string);
+		this.setString(string);
 	}
 
 	@Override
