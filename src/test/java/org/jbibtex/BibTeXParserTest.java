@@ -136,10 +136,10 @@ public class BibTeXParserTest {
 		try {
 			clonedDatabase = SerializationUtil.clone(database);
 		} catch(Exception e){
-			throw new AssertionError();
+			throw new AssertionError(e.getMessage());
 		}
 
-		assertEquals((database.getObjects()).size(), (clonedDatabase.getObjects()).size());
+                assertEquals((database.getObjects()).size(), (clonedDatabase.getObjects()).size());
 	}
 
 	static
@@ -149,9 +149,9 @@ public class BibTeXParserTest {
 		try {
 			clonedDatabase = SerializationUtil.jsonClone(database);
 		} catch(Exception e){
-			throw new AssertionError();
+			throw new AssertionError(e.getMessage());
 		}
-
+                
 		assertEquals((database.getObjects()).size(), (clonedDatabase.getObjects()).size());
 	}
 

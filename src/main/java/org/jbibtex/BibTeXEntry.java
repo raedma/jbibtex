@@ -7,8 +7,10 @@ import java.util.Collections;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.LinkedHashMap;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BibTeXEntry extends BibTeXObject {
 
 	private BibTeXEntryType type = null;

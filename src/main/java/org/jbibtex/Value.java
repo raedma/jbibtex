@@ -23,6 +23,7 @@ public class Value implements Serializable {
 	 * Returns a string representation of the object which is suitable for displaying to end users.
 	 * The result may contain LaTeX language markup.
 	 *
+         * @return string representation of the object which is suitable for displaying to end users
 	 * @see LaTeXParser
 	 * @see LaTeXPrinter
 	 */

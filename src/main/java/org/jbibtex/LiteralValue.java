@@ -25,7 +25,7 @@ public class LiteralValue extends Value {
 		return this.string;
 	}
 
-	private void setString(String string){
+	public void setString(String string){
 		this.string = string;
 	}
 }
