@@ -149,15 +149,6 @@ public class PeriDoXFormatter extends AbstractBibTeXFormatter<
         writeHeader(header,writer);
         
         // Sort alphabetically for key
-        /*
-        Set<BibTeXEntry> set = new TreeSet<>(new Comparator<BibTeXEntry>(){
-            @Override
-            public int compare(BibTeXEntry t1, BibTeXEntry t2) {
-                return t1.getKey().getValue().trim().compareTo(t2.getKey().getValue().trim());
-            }
-            
-        });
-        */
         Set<BibTeXEntry> set = new TreeSet<>(new BibTeXEntryKeyAlphabeticalComparator());
         set.addAll(entries);
         
@@ -168,7 +159,6 @@ public class PeriDoXFormatter extends AbstractBibTeXFormatter<
             BibTeXEntry entry  = eit.next();
             this.format(entry, writer);
             //
-            //if (eit.hasNext()){writer.write("\n\n");}
             writer.write("\n\n");
         }
     }
@@ -220,57 +210,12 @@ public class PeriDoXFormatter extends AbstractBibTeXFormatter<
                 writer.write(s);
                 
                 writer.write("= ");
-                
-                // Value
-                switch(type){
-                    case PAGES:
-                        PagesFormatter f = new PagesFormatter(value);
-                        f.perform();
-                        format(f.get(), template.getStyle(), writer);
-                        break;
-                    case YEAR:
-                    case VOLUME:
-                    case NUMBER:
-                    case DOI:
-                    case ISBN:
-                    case ISBN13:
-                    case ISSN:
-                    case ISSNL:
-                    case URL:
-                        value = value.replace(" ", "");
-                        format(value, template.getStyle(), writer);
-                        
-                        break;
-                    default:
-                        format(value, template.getStyle(), writer);
-                }
-                
+                format(value, template.getStyle(), writer);
                 
                 // new line
                 writer.write(",\n");
             }
         }
-        
-        
-        
-        /*
-        for(Iterator<Map.Entry<BibTeXFieldType, Value>> it = fields.iterator(); it.hasNext(); ){
-            Map.Entry<BibTeXFieldType, Value> field = it.next();
-
-            writer.write(getIndent());
-
-            writer.write(field.getKey().get());
-            writer.write(" = ");
-            format(field.getValue(), 2, writer);e(',');
-            }
-
-            if(it.hasNext()){
-                writer.write(',');
-            }
-
-            writer.write('\n');
-        }
-    */
 
         writer.write(BibTeXLanguageInterface.SYMBOL_BRACKET_CLOSE);
     }
@@ -310,16 +255,12 @@ public class PeriDoXFormatter extends AbstractBibTeXFormatter<
     }
     
     protected void format(Value value, Style style, Writer writer) throws IOException {
-        //String string = StringUtil.addIndent(value.format(), level, getIndent());
-        
         String string = style.getBegin() + value.toUserString() + style.getEnd();
 
         writer.write(string);
     }
     
     protected void format(String value, Style style, Writer writer) throws IOException {
-        //String string = StringUtil.addIndent(value.format(), level, getIndent());
-        
         String string = style.getBegin() + value + style.getEnd();
 
         writer.write(string);
@@ -335,54 +276,6 @@ public class PeriDoXFormatter extends AbstractBibTeXFormatter<
     
     // --------------------------------------------------------------------
     // Inner classes
-    // --------------------------------------------------------------------
-    
-    private abstract class AbstractItemFormatter{
-        
-        protected final String value;
-        
-        protected String result;
-        
-        public AbstractItemFormatter(
-                String value
-        ){
-            this.value = value;
-        }
-        
-        public String get(){return result;}
-        
-        public abstract void perform();
-    }
-    
-    public class PagesFormatter extends AbstractItemFormatter{
-        
-        
-        public PagesFormatter(
-                String value
-        ){
-            super(
-                    value
-            );
-        }
-
-        @Override
-        public void perform() {
-            
-            // Remove spaces
-            result = StringUtils.removeAll(value," ");
-            
-            // Long Em minus?
-            if (result.contains("\u2014")){
-                result = result.replace("\u2014","--");
-            }
-            
-            // Minus?
-            if (result.contains("-") && !result.contains("--")){
-                result = result.replace("-","--");
-            }
-            
-        }
-        
-    }
+    // --------------------------------------------------------------------*/
 
 }
