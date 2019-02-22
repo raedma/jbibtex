@@ -143,6 +143,8 @@ public class BibTeXDatabase implements Serializable {
 
             return entry;
     }
+    
+    public boolean hasEntries(){return entries != null && !entries.isEmpty();}
 
     public Map<Key, BibTeXEntry> getEntries(){
             return Collections.unmodifiableMap(this.entries);
