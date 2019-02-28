@@ -20,7 +20,6 @@ import org.jbibtex.BibTeXInclude;
 import org.jbibtex.BibTeXObject;
 import org.jbibtex.BibTeXPreamble;
 import org.jbibtex.BibTeXString;
-import org.jbibtex.StringUtil;
 import org.jbibtex.Value;
 
 /**
