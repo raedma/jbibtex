@@ -76,6 +76,7 @@ public enum BibTeXFieldType implements Serializable {
     AFFILIATIONADDRESS(BibTeXLanguageInterface.KEY_AFFILIATIONADDRESS),
     ALTBOOKTITLE(BibTeXLanguageInterface.KEY_ALTBOOKTITLE),
     ALTTITLE(BibTeXLanguageInterface.KEY_ALTTITLE),
+    ARCHIVEPREFIX(BibTeXLanguageInterface.KEY_ARCHIVEPREFIX),
     ARTICLENO(BibTeXLanguageInterface.KEY_ARTICLENO),
     AUTHOR1ADDRESS(BibTeXLanguageInterface.KEY_AUTHOR1ADDRESS),
     AUTHOR2ADDRESS(BibTeXLanguageInterface.KEY_AUTHOR2ADDRESS),
@@ -233,12 +234,6 @@ public enum BibTeXFieldType implements Serializable {
     public static BibTeXFieldType getTypeOf (String typename) {
         BibTeXFieldType result = nameMap.get(typename.toLowerCase());
         if (result == null) {throw new IllegalArgumentException("Invalid " + BibTeXFieldType.class.getSimpleName() + " type: " + typename);}
-        /*
-        if(result == null){
-            //System.out.println(typename);
-            result = UNKNOWN;
-        }
-        */
         return result;
     }
     

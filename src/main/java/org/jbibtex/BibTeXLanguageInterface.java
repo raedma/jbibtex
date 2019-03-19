@@ -28,9 +28,11 @@ public interface BibTeXLanguageInterface {
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_AFFILIATION = "affiliation";
     public static final String KEY_ANNOTE = "annote";
+    public static final String KEY_ARCHIVEPREFIX = "archiveprefix";
     public static final String KEY_AUTHOR = "author";
     public static final String KEY_BIBDATE = "bibdate";
     public static final String KEY_BIBSOURCE = "bibsource";
+    public static final String KEY_BIBURL = "biburl";
     public static final String KEY_BOOKTITLE = "booktitle";
     public static final String KEY_CHAPTER = "chapter";
     public static final String KEY_CLASSCODES = "classcodes";
@@ -66,6 +68,7 @@ public interface BibTeXLanguageInterface {
     public static final String KEY_SCHOOL = "school";
     public static final String KEY_SERIES = "series";
     public static final String KEY_SUBJECT = "subject";
+    public static final String KEY_TIMESTAMP = "timestamp";
     public static final String KEY_TITLE = "title";
     public static final String KEY_TOPIC = "topic";
     public static final String KEY_TREATMENT = "treatment";
