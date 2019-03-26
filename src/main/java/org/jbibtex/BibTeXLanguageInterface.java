@@ -115,6 +115,7 @@ public interface BibTeXLanguageInterface {
     public static final String KEY_EMAIL = "email";
     public static final String KEY_ENUM = "enum";
     public static final String KEY_ERICNO = "ericno";
+    public static final String KEY_FILE = "file";
     public static final String KEY_GOVTDOCNUMBER = "govtdocnumber";
     public static final String KEY_IDENTIFIERS = "identifiers";
     public static final String KEY_ISSUE = "issue";

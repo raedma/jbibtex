@@ -107,6 +107,7 @@ public enum BibTeXFieldType implements Serializable {
     EMAIL(BibTeXLanguageInterface.KEY_EMAIL),
     ENUM(BibTeXLanguageInterface.KEY_ENUM),
     ERICNO(BibTeXLanguageInterface.KEY_ERICNO),
+    FILE(BibTeXLanguageInterface.KEY_FILE),
     GOVTDOCNUMBER(BibTeXLanguageInterface.KEY_GOVTDOCNUMBER),
     IDENTIFIERS(BibTeXLanguageInterface.KEY_IDENTIFIERS),
     ISSUE(BibTeXLanguageInterface.KEY_ISSUE),
