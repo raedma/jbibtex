@@ -88,6 +88,7 @@ public interface BibTeXLanguageInterface {
     public static final String KEY_ALTBOOKTITLE = "altbooktitle";
     public static final String KEY_ALTTITLE = "alttitle";
     public static final String KEY_ARTICLENO = "articleno";
+    public static final String KEY_ARXIVID = "arxivid";
     public static final String KEY_AUTHOR1ADDRESS = "author-1-address";
     public static final String KEY_AUTHOR2ADDRESS = "author-2-address";
     public static final String KEY_AUTHOR3ADDRESS = "author-3-address";

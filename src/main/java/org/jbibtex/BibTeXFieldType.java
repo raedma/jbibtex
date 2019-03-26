@@ -80,6 +80,7 @@ public enum BibTeXFieldType implements Serializable {
     ALTTITLE(BibTeXLanguageInterface.KEY_ALTTITLE),
     ARCHIVEPREFIX(BibTeXLanguageInterface.KEY_ARCHIVEPREFIX),
     ARTICLENO(BibTeXLanguageInterface.KEY_ARTICLENO),
+    ARXIVID(BibTeXLanguageInterface.KEY_ARXIVID),
     AUTHOR1ADDRESS(BibTeXLanguageInterface.KEY_AUTHOR1ADDRESS),
     AUTHOR2ADDRESS(BibTeXLanguageInterface.KEY_AUTHOR2ADDRESS),
     AUTHOR3ADDRESS(BibTeXLanguageInterface.KEY_AUTHOR3ADDRESS),
